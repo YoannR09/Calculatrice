@@ -1,2 +1,0 @@
-# Calculatrice
-TP_Calculatrice

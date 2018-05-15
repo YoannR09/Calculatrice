@@ -8,14 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 
 public class Calculatrice extends JFrame {
 
+	public static final JComponent couleur = null;
 	/**
 	 * Les Variables d'instance.
 	 */
@@ -37,12 +41,18 @@ public class Calculatrice extends JFrame {
 	private JButton boutonc = new JButton("C");
 	private JButton boutonp = new JButton(".");
 	private JButton boutoneg = new JButton("=");
+	private ButtonGroup bg = new ButtonGroup();
+	private JRadioButton couleur1 = new JRadioButton("C1");
+	private JRadioButton couleur2 = new JRadioButton("C2");
+	private JRadioButton couleur3 = new JRadioButton("C3");
+	private JRadioButton couleur0 = new JRadioButton("C0");
 
 	private JPanel container = new JPanel();
 	private JLabel ecran = new JLabel();
 	private Double chiffre1 ;
 	private boolean clicOperateur = false, update = false;
 	private String operateur = "";
+	
 
 
 	/**
@@ -50,7 +60,7 @@ public class Calculatrice extends JFrame {
 	 */
 	public Calculatrice () {
 		this.setTitle("Calculatrice");
-		this.setSize(270, 265);
+		this.setSize(270, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		container.setBackground(Color.DARK_GRAY);
@@ -65,7 +75,33 @@ public class Calculatrice extends JFrame {
 		this.setVisible(true);
 		this.setContentPane(container);
 	}
-	private void Contenu() {
+	private void Contenu () {
+		
+		JPanel couleur = new JPanel ();
+		couleur.setBackground(Color.orange);
+		couleur.setPreferredSize(new Dimension(120,30));
+		couleur0.addActionListener(new CouleurListener());
+		couleur1.addActionListener(new CouleurListener());
+		couleur2.addActionListener(new CouleurListener());
+		couleur3.addActionListener(new CouleurListener());
+		bg.add(couleur0);
+		bg.add(couleur1);
+		bg.add(couleur2);
+		bg.add(couleur3);
+		couleur.add(couleur0);
+		couleur.add(couleur1);
+		couleur.add(couleur2);
+		couleur.add(couleur3);
+		couleur0.setPreferredSize(new Dimension (20,20));
+		couleur1.setPreferredSize(new Dimension (20,20));
+		couleur2.setPreferredSize(new Dimension (20,20));
+		couleur3.setPreferredSize(new Dimension (20,20));
+		couleur0.setBackground(Color.orange);
+		couleur1.setBackground(Color.orange);
+		couleur2.setBackground(Color.orange);
+		couleur3.setBackground(Color.orange);
+		couleur.setBorder(BorderFactory.createLineBorder(Color.black));
+		container.add(couleur , BorderLayout.NORTH);
 		
 		/**
 		 * Création du JPanel du cadre de l'écran.
@@ -85,6 +121,11 @@ public class Calculatrice extends JFrame {
 		ecran = new JLabel ("0");
 		ecran.setForeground(Color.black);
 		ecran.setFont(police);
+		
+		
+		
+		
+		
 
 		/**
 		 * Création du JPanel des chiffres et les signes "=" "."
@@ -142,6 +183,8 @@ public class Calculatrice extends JFrame {
 		ecran.setHorizontalAlignment(JLabel.RIGHT);
 		ecran.setPreferredSize(new Dimension(220, 40));
 		ecranP.add(ecran);
+		
+		
 
 		/**
 		 * Ajout des ActionListener pour les chiffres.
@@ -194,6 +237,9 @@ public class Calculatrice extends JFrame {
 		
 
 	}
+	
+	
+	
 	/**
 	 * Méthodes de calculs
 	 */
@@ -367,7 +413,37 @@ public class Calculatrice extends JFrame {
 				ecran.setText(str);
 			}
 	 }
-}
+	 class CouleurListener implements ActionListener{
+		
+		 public void actionPerformed(ActionEvent e) {
+			 
+			
+			 if(couleur1.isSelected()) {
+				 container.setBackground(Color.blue);
+				 
+				 
+				 
+			 }
+			 if(couleur2.isSelected()) {
+				 container.setBackground(Color.RED);
+			
+			 }
+			 if(couleur3.isSelected()) {
+				 container.setBackground(Color.GREEN);
+			 }
+			 if(couleur0.isSelected()) {
+				 container.setBackground(Color.DARK_GRAY);
+			 }
+			 
+		 
+	 }
+
+	
+			
+		}
+	 }
+
+
 
 
 
